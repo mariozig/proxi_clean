@@ -21,17 +21,23 @@ gem 'proxi_clean'
 
 And then execute:
 
-    $ bundle
+`$ bundle`
 
 Or install it yourself as:
 
-    $ gem install proxi_clean
-
+`$ gem install proxi_clean`
 
 ## Usage
 
-```ruby
+Easy! The API has 1 public method -- `works?`. Just create a `client` and start checking proxies.
 
+```ruby
+2.2.1 :005 > client = ProxiClean::Client.new
+ => #<ProxiClean::Client:0x007fa149e78b18 @public_ip="47.202.47.103">
+2.2.1 :006 > client.works? 'https://124.88.67.13:843'
+ => true
+2.2.1 :007 > client.works? 'https://NOT-GONNA-WORK.com:47'
+ => false
 ```
 
 ## Contributing
