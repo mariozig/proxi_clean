@@ -11,9 +11,8 @@ module ProxiClean
     def works?(proxy_uri)
       begin
         proxied_ip = proxied_ip(proxy_uri)
-        puts "proxied_ip is #{proxied_ip}"
       rescue StandardError => e
-        # Assume the proxy doesn't work if anything goes wrong
+        # If anything goes wrong, assuming the proxy is no good
         return false
       end
 
@@ -22,6 +21,7 @@ module ProxiClean
 
     def public_ip
       RestClient.proxy = nil
+      # Try to not hit realip more than we really need
       @public_ip ||= result_from_real_ip_api
     end
 
