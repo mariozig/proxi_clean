@@ -29,7 +29,7 @@ Or install it yourself as:
 
 ## Usage
 
-Easy! The API has 1 public method -- `works?`. Just create a `client` and start checking proxies.
+Easy! The API has 1 useful public method: `works?`. Just create a `client` and start checking proxies.
 
 ```ruby
 2.2.1 :005 > client = ProxiClean::Client.new
