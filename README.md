@@ -1,5 +1,8 @@
 ![Proxi Clean Career Destroying Logo](http://i.imgur.com/eH4PWSe.png)
 
+[![Build Status](https://travis-ci.org/mariozig/proxi_clean.png?branch=master)](https://travis-ci.org/mariozig/proxi_clean)
+
+
 # ProxiClean
 
 ## What is proxi_clean?
