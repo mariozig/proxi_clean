@@ -34,7 +34,11 @@ module ProxiClean
 
     def result_from_real_ip_api
       real_up_url = 'http://www.realip.info/api/p/realip.php'
-      JSON.parse(RestClient.get(real_up_url))['IP']
+      response = RestClient::Request.execute(method: :get,
+                                             url: real_up_url,
+                                             read_timeout: 10,
+                                             open_timeout: 10)
+      JSON.parse(response)['IP']
     end
   end
 end
