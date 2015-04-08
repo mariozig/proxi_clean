@@ -7,33 +7,31 @@ http_interactions:
       encoding: US-ASCII
       string: ''
     headers:
-      Accept:
-      - "*/*; q=0.5, application/xml"
-      Accept-Encoding:
-      - gzip, deflate
       User-Agent:
-      - Ruby
+      - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML,
+        like Gecko) Chrome/41.0.2272.89 Safari/537.36
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Sun, 29 Mar 2015 01:07:55 GMT
+      - Wed, 08 Apr 2015 02:08:46 GMT
       Server:
       - Apache
       Vary:
       - Accept-Encoding
-      Content-Encoding:
-      - gzip
       Content-Length:
-      - '42'
+      - '41'
       Content-Type:
       - text/html
     body:
       encoding: ASCII-8BIT
-      string: !binary |-
-        H4sIAAAAAAAAA6tW8gxQslIyN9QzMjDSMzLRMzQwVqoFAPTqbFsWAAAA
+      string: '{"IP":"50.141.4.134"}'
     http_version: 
-  recorded_at: Sun, 29 Mar 2015 01:07:55 GMT
+  recorded_at: Wed, 08 Apr 2015 02:08:48 GMT
 recorded_with: VCR 2.9.3

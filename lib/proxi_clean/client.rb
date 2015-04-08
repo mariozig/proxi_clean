@@ -1,17 +1,21 @@
-require 'rest_client'
+require 'faraday'
+require 'json'
 
 module ProxiClean
   class Client
-    attr_reader :public_ip
+    attr_reader :public_ip, :debug
 
-    def initialize
+    def initialize(debug=false)
+      @debug = debug
       public_ip
     end
 
     def works?(proxy_uri)
       begin
+        puts 'Checking: ' + proxy_uri if @debug
         proxied_ip = proxied_ip(proxy_uri)
       rescue StandardError => e
+        puts 'ERROR: ' + e.message if @debug
         # If anything goes wrong, assuming the proxy is no good
         return false
       end
@@ -20,25 +24,25 @@ module ProxiClean
     end
 
     def public_ip
-      RestClient.proxy = nil
       # Try to not hit realip more than we really need
-      @public_ip ||= result_from_real_ip_api
+      @public_ip ||= real_ip(proxy_uri: nil)
+    end
+
+    def proxied_ip(proxy_uri)
+      real_ip(proxy_uri: proxy_uri)
     end
 
     private
 
-    def proxied_ip(proxy_uri)
-      RestClient.proxy = proxy_uri
-      result_from_real_ip_api
-    end
-
-    def result_from_real_ip_api
-      real_up_url = 'http://www.realip.info/api/p/realip.php'
-      response = RestClient::Request.execute(method: :get,
-                                             url: real_up_url,
-                                             read_timeout: 10,
-                                             open_timeout: 10)
-      JSON.parse(response)['IP']
+    def real_ip(proxy_uri: nil)
+      conn = Faraday.new(proxy: proxy_uri)
+      conn.headers[:user_agent] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
+      response = conn.get do |req|
+        req.url 'http://www.realip.info/api/p/realip.php'
+        req.options.timeout = 5
+        req.options.open_timeout = 2
+      end
+      JSON.parse(response.body)['IP']
     end
   end
 end
