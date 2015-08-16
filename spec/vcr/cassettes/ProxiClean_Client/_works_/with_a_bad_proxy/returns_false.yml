@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: http://www.realip.info/api/p/realip.php
+    uri: http://ipinfo.io/
     body:
       encoding: US-ASCII
       string: ''
@@ -10,28 +10,42 @@ http_interactions:
       User-Agent:
       - Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML,
         like Gecko) Chrome/41.0.2272.89 Safari/537.36
+      Accept:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
   response:
     status:
       code: 200
       message: OK
     headers:
-      Date:
-      - Wed, 08 Apr 2015 02:08:46 GMT
-      Server:
-      - Apache
-      Vary:
-      - Accept-Encoding
-      Content-Length:
-      - '41'
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
-      - text/html
+      - application/json; charset=utf-8
+      Date:
+      - Sun, 16 Aug 2015 00:47:25 GMT
+      Server:
+      - nginx/1.4.6 (Ubuntu)
+      X-Content-Type-Options:
+      - nosniff
+      Content-Length:
+      - '253'
+      Connection:
+      - keep-alive
     body:
-      encoding: ASCII-8BIT
-      string: '{"IP":"50.141.4.134"}'
+      encoding: UTF-8
+      string: |-
+        {
+          "ip": "71.202.24.103",
+          "hostname": "c-71-202-24-103.hsd1.ca.comcast.net",
+          "city": "San Mateo",
+          "region": "California",
+          "country": "US",
+          "loc": "37.5550,-122.2687",
+          "org": "AS7922 Comcast Cable Communications, Inc.",
+          "postal": "94404"
+        }
     http_version: 
-  recorded_at: Wed, 08 Apr 2015 02:08:48 GMT
+  recorded_at: Sun, 16 Aug 2015 00:47:36 GMT
 recorded_with: VCR 2.9.3

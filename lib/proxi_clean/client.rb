@@ -37,12 +37,13 @@ module ProxiClean
     def real_ip(proxy_uri: nil)
       conn = Faraday.new(proxy: proxy_uri)
       conn.headers[:user_agent] = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.89 Safari/537.36'
+      conn.headers[:accept] = 'application/json'
       response = conn.get do |req|
-        req.url 'http://www.realip.info/api/p/realip.php'
-        req.options.timeout = 5
-        req.options.open_timeout = 2
+        req.url 'http://ipinfo.io'
+        req.options.timeout = 8
+        req.options.open_timeout = 5
       end
-      JSON.parse(response.body)['IP']
+      JSON.parse(response.body)['ip']
     end
   end
 end

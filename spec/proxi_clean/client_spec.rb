@@ -2,7 +2,11 @@ require_relative '../spec_helper'
 
 describe ProxiClean::Client, :vcr do
   subject(:client) { described_class.new }
-  let(:unproxied_ip_address) { '50.141.4.134' }
+
+  # Update these when making changes if you want to test
+  # end to end with VCR
+  let(:unproxied_ip_address) { '71.202.24.103' }
+  let(:good_proxy) { 'http://192.99.3.129:3128' }
 
   describe '#public_ip' do
     it 'sets the correct unproxied IP address' do
@@ -11,7 +15,6 @@ describe ProxiClean::Client, :vcr do
   end
 
   describe '#works?' do
-    let(:good_proxy) { 'http://36.250.74.87:8104' }
     let(:bad_proxy) { 'http://el-oh-el-smiley-face.z:911' }
 
     context 'with a good proxy' do
