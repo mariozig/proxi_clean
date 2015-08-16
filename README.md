@@ -10,7 +10,7 @@
 A simple utility for checking if an http proxy works or not.  If you deal with huge lists of proxies and need to clean out the dead or non-functional ones, this might help you.
 
 ## How does it work?
-Using the power of oxygen `proxi_clean` will make a call to the [realip.info](http://www.realip.info/api/p/realip.php) API using `RestClient` and determine it's unproxied public IP.  When checking if a proxy is valid or not `proxi_clean` reconfigures `RestClient` to use the proxy you provide and confirms that realip returns an IP address that does NOT match your unproxied public IP.
+Using the power of oxygen `proxi_clean` will make a call to the [ipinfo.io](http://ipinfo.io) API (JSON is returned with proper headers) using `Faraday` and determine the current unproxied public IP.  When checking if a proxy is valid or not `proxi_clean` reconfigures itself to use the proxy you provide and confirms that `ipinfo.io` returns an IP address that does NOT match your unproxied public IP.
 
 If anything goes wrong we blindly assume the proxy is no good.
 
